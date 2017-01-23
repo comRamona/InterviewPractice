@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    public static int calculate(int n,int[] t){
+        if(n<0) return 0;
+        if(t[n]!=-1) 
+            return t[n];
+        else{
+            int a=calculate(n-1,t)+calculate(n-2,t)+calculate(n-3,t);
+            t[n]=a;
+            return a;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s = in.nextInt();
+        for(int a0 = 0; a0 < s; a0++){
+            int n = in.nextInt();
+            int[] t=new int[n+1];
+            for(int i=0;i<=n;i++)
+                t[i]=-1;
+            t[0]=1;
+            System.out.println(calculate(n,t));
+        }
+    }
+}
